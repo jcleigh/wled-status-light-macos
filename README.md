@@ -2,16 +2,29 @@
 
 A native macOS menu bar application for controlling WLED status lights, perfect for indicating meeting availability.
 
+## Why this project exists
+
+This project originated from an idea I had after attending [GitHub Universe 2025](https://githubuniverse.com/). I assembled an [Octolamp kit](https://github.com/martinwoodward/octolamp), 
+which I realized would be a great "in a meeting" status light for my home office! I wanted a way to easily control the light remotely from my desk without
+using the built-in WLED web UI or mobile app. 
+
+| Screenshot | Octolamp in Busy (Red) mode | Octolamp in Free (Pacifica) mode |
+|------------|-----------------------------|----------------------------------|
+| <img width="170" height="169" alt="app screenshot" src="https://github.com/user-attachments/assets/d88ad83e-2b19-4512-b5e0-018aeb47cab6" /> | <img width="115" height="169" alt="busy light" src="https://github.com/user-attachments/assets/6bdf8731-12b0-4772-a908-c8b72475fefc" /> | <img width="115" height="169" alt="free light" src="https://github.com/user-attachments/assets/55effaf3-b69e-4323-949d-a2a533f292f4" /> |
+
+**Protip:** run the USB power cable through the wall behind the light and plug it in on the other side. Fortunately for me, the other side of that wall is my unfinished utility room!
+
+
+
 ## Installation
 
 ### From Release (Recommended)
 
 1. Download the latest `WLEDStatusLight.dmg` from [Releases](../../releases)
 2. Open the DMG and drag the app to your Applications folder
-3. **First launch**: Control-click (or right-click) the app and select "Open", then click "Open" in the dialog
-   - macOS will block unsigned apps by default with a generic warning
-   - After the first launch with Control-click → Open, you can open it normally
-   - Alternative: Run `xattr -cr /Applications/WLEDStatusLight.app` in Terminal to remove the quarantine flag
+3. Run `xattr -cr /Applications/WLEDStatusLight.app` in Terminal to remove the quarantine flag
+4. Open WLEDStatusLight from your Applications folder
+5. **Alternative:** Clone the repo and build from source to create your own copy locally. This circumvents the quarantine.
 
 ### Building from Source
 
@@ -64,19 +77,6 @@ Use the included build script:
 
 This will build the app and optionally create a DMG installer.
 
-## Running Tests
-
-Run tests in Xcode with ⌘U, or from the command line:
-
-```bash
-xcodebuild test -project WLEDStatusLight.xcodeproj -scheme WLEDStatusLight -destination 'platform=macOS'
-```
-
-The test suite includes:
-- **Unit tests** for WLEDController functionality
-- **FreeMode enum tests** for all color/effect modes
-- **Integration tests** for complete user workflows
-
 ## Usage
 
 1. Launch the app - it will appear in your menu bar as a lightbulb icon
@@ -99,7 +99,7 @@ This app uses the WLED JSON API to control your device:
 
 ## Troubleshooting
 
-- **"Cannot be opened because the developer cannot be verified"**: Right-click the app and select "Open" on first launch
+- **"Cannot be opened because the developer cannot be verified"**: Run `xattr -cr /Applications/WLEDStatusLight.app` in Terminal to remove the quarantine flag
 - **Connection issues**: Verify your WLED device is on the same network and the IP address is correct
 - **Effect not working**: Ensure your WLED firmware supports the selected effect
 - **App not appearing in menu bar**: The app runs as an agent (LSUIElement = true) so it won't appear in the Dock
@@ -107,3 +107,8 @@ This app uses the WLED JSON API to control your device:
 ## License
 
 MIT
+
+## Shout outs
+- [GitHub Copilot CLI](https://github.com/features/copilot/cli) for coding this entire app
+- [Martin Woodward](https://github.com/martinwoodward) and [GitHub](https://github.com) for the Octolamp kit
+- All the great [WLED project](https://github.com/WLED/WLED) contributors 
