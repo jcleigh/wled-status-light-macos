@@ -29,11 +29,6 @@ jobs:
           -exportPath "$PWD/build" \
           -exportOptionsPlist ExportOptions.plist
     
-    - name: Ad-hoc sign the app
-      run: |
-        codesign --force --deep --sign - "build/WLEDStatusLight.app"
-        codesign --verify --verbose "build/WLEDStatusLight.app"
-    
     - name: Create DMG
       run: |
         # Create a temporary directory for DMG contents

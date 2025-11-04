@@ -8,9 +8,10 @@ A native macOS menu bar application for controlling WLED status lights, perfect 
 
 1. Download the latest `WLEDStatusLight.dmg` from [Releases](../../releases)
 2. Open the DMG and drag the app to your Applications folder
-3. **First launch only**: Right-click the app and select "Open" to bypass Gatekeeper
-   - This is required because the app is ad-hoc signed (not notarized by Apple)
-   - After the first launch, you can open it normally
+3. **First launch**: Control-click (or right-click) the app and select "Open", then click "Open" in the dialog
+   - macOS will block unsigned apps by default with a generic warning
+   - After the first launch with Control-click → Open, you can open it normally
+   - Alternative: Run `xattr -cr /Applications/WLEDStatusLight.app` in Terminal to remove the quarantine flag
 
 ### Building from Source
 
