@@ -80,9 +80,6 @@ jobs:
         # Convert to compressed read-only DMG
         hdiutil convert temp.dmg -format UDZO -o WLEDStatusLight.dmg
         rm temp.dmg
-        
-        # Sign the DMG
-        codesign --force --sign - "WLEDStatusLight.dmg"
     
     - name: Upload DMG artifact
       uses: actions/upload-artifact@v4
