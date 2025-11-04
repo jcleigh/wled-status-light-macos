@@ -90,4 +90,4 @@ This app uses the WLED JSON API to control your device:
 
 ## License
 
-Free to use and modify for personal or commercial use.
+MIT
