@@ -67,8 +67,6 @@ jobs:
             set icon size of viewOptions to 100
             set position of item "WLEDStatusLight.app" of container window to {140, 200}
             set position of item "Applications" of container window to {410, 200}
-            set background picture of viewOptions to file ".background:background.png"
-            close
             open
             update without registering applications
             delay 2
