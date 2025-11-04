@@ -2,6 +2,20 @@
 
 A native macOS menu bar application for controlling WLED status lights, perfect for indicating meeting availability.
 
+## Installation
+
+### From Release (Recommended)
+
+1. Download the latest `WLEDStatusLight.dmg` from [Releases](../../releases)
+2. Open the DMG and drag the app to your Applications folder
+3. **First launch only**: Right-click the app and select "Open" to bypass Gatekeeper
+   - This is required because the app is ad-hoc signed (not notarized by Apple)
+   - After the first launch, you can open it normally
+
+### Building from Source
+
+See the "Building the App" section below.
+
 ## Features
 
 - **Menu bar integration**: Lives in your macOS menu bar with other system icons
@@ -84,6 +98,7 @@ This app uses the WLED JSON API to control your device:
 
 ## Troubleshooting
 
+- **"Cannot be opened because the developer cannot be verified"**: Right-click the app and select "Open" on first launch
 - **Connection issues**: Verify your WLED device is on the same network and the IP address is correct
 - **Effect not working**: Ensure your WLED firmware supports the selected effect
 - **App not appearing in menu bar**: The app runs as an agent (LSUIElement = true) so it won't appear in the Dock
