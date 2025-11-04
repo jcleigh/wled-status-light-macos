@@ -110,5 +110,5 @@ MIT
 
 ## Shout outs
 - [GitHub Copilot CLI](https://github.com/features/copilot/cli) for coding this entire app
-- [Martin Woodward](http://github.com/martinwoodward) and [GitHub](http://github.com) for the Octolamp kit
+- [Martin Woodward](https://github.com/martinwoodward) and [GitHub](https://github.com) for the Octolamp kit
 - All the great [WLED project](https://github.com/WLED/WLED) contributors 
