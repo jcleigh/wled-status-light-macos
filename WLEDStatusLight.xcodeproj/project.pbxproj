@@ -12,6 +12,7 @@ A1000003000000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile
 A1000005000000000000001 /* WLEDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000006000000000000001 /* WLEDController.swift */; };
 A1000007000000000000001 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000008000000000000001 /* StatusBarController.swift */; };
 A1000009000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1000010000000000000001 /* Assets.xcassets */; };
+A1000012000000000000001 /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000013000000000000001 /* ShortcutManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@ A1000006000000000000001 /* WLEDController.swift */ = {isa = PBXFileReference; la
 A1000008000000000000001 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 A1000010000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 A1000011000000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+A1000013000000000000001 /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@ A1000002000000000000001 /* WLEDStatusLightApp.swift */,
 A1000004000000000000001 /* ContentView.swift */,
 A1000006000000000000001 /* WLEDController.swift */,
 A1000008000000000000001 /* StatusBarController.swift */,
+A1000013000000000000001 /* ShortcutManager.swift */,
 A1000010000000000000001 /* Assets.xcassets */,
 A1000011000000000000001 /* Info.plist */,
 );
@@ -137,6 +140,7 @@ A1000001000000000000001 /* WLEDStatusLightApp.swift in Sources */,
 A1000003000000000000001 /* ContentView.swift in Sources */,
 A1000005000000000000001 /* WLEDController.swift in Sources */,
 A1000007000000000000001 /* StatusBarController.swift in Sources */,
+A1000012000000000000001 /* ShortcutManager.swift in Sources */,
 );
 runOnlyForDeploymentPostprocessing = 0;
 };

@@ -6,12 +6,24 @@ class StatusBarController: ObservableObject {
     private var statusItem: NSStatusItem
     private var popover: NSPopover
     @Published var wledController: WLEDController
+    @Published var shortcutManager: ShortcutManager
     private var cancellables = Set<AnyCancellable>()
     
     init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         popover = NSPopover()
-        wledController = WLEDController()
+        let controller = WLEDController()
+        wledController = controller
+        shortcutManager = ShortcutManager { action in
+            switch action {
+            case .busy:
+                controller.setBusy()
+            case .free:
+                controller.setFree()
+            case .off:
+                controller.turnOff()
+            }
+        }
         
         if let button = statusItem.button {
             button.image = NSImage(systemSymbolName: "lightbulb.circle", accessibilityDescription: "WLED Status")
@@ -20,7 +32,9 @@ class StatusBarController: ObservableObject {
             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
         }
         
-        popover.contentViewController = NSHostingController(rootView: ContentView(controller: wledController))
+        popover.contentViewController = NSHostingController(
+            rootView: ContentView(controller: wledController, shortcutManager: shortcutManager)
+        )
         popover.behavior = .transient
         
         // Observe isOn changes and update icon

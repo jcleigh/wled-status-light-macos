@@ -38,6 +38,10 @@ See the "Building the App" section below.
   - **Free** - Sets light to your preferred mode (configurable)
   - **Off** - Turns the light off
 - **Right-click toggle**: Right-click the menu bar icon to quickly toggle the light on/off
+- **Global keyboard shortcuts**: Trigger states from anywhere (or via a macropad) with customizable shortcuts:
+  - **Busy**: `⌃⌥⌘1` (Control + Option + Command + 1) by default
+  - **Free**: `⌃⌥⌘2` (Control + Option + Command + 2) by default
+  - **Off**: `⌃⌥⌘3` (Control + Option + Command + 3) by default
 - **Configurable Free mode**: Choose from:
   - White
   - Green
