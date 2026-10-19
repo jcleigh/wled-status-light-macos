@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var controller: WLEDController
+    @ObservedObject var shortcutManager: ShortcutManager
     
     var body: some View {
         VStack(spacing: 16) {
@@ -12,11 +13,18 @@ struct ContentView: View {
                 Button(action: {
                     controller.setBusy()
                 }) {
-                    HStack {
-                        Circle()
-                            .fill(Color.red)
-                            .frame(width: 12, height: 12)
-                        Text("Busy")
+                    VStack(spacing: 4) {
+                        HStack {
+                            Circle()
+                                .fill(Color.red)
+                                .frame(width: 12, height: 12)
+                            Text("Busy")
+                        }
+                        if let shortcut = shortcutManager.shortcut(for: .busy) {
+                            Text(shortcut.displayString)
+                                .font(.caption2)
+                                .opacity(0.85)
+                        }
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -26,11 +34,18 @@ struct ContentView: View {
                 Button(action: {
                     controller.setFree()
                 }) {
-                    HStack {
-                        Circle()
-                            .fill(Color.green)
-                            .frame(width: 12, height: 12)
-                        Text("Free")
+                    VStack(spacing: 4) {
+                        HStack {
+                            Circle()
+                                .fill(Color.green)
+                                .frame(width: 12, height: 12)
+                            Text("Free")
+                        }
+                        if let shortcut = shortcutManager.shortcut(for: .free) {
+                            Text(shortcut.displayString)
+                                .font(.caption2)
+                                .opacity(0.85)
+                        }
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -40,11 +55,18 @@ struct ContentView: View {
                 Button(action: {
                     controller.turnOff()
                 }) {
-                    HStack {
-                        Circle()
-                            .fill(Color.gray)
-                            .frame(width: 12, height: 12)
-                        Text("Off")
+                    VStack(spacing: 4) {
+                        HStack {
+                            Circle()
+                                .fill(Color.gray)
+                                .frame(width: 12, height: 12)
+                            Text("Off")
+                        }
+                        if let shortcut = shortcutManager.shortcut(for: .off) {
+                            Text(shortcut.displayString)
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
+                        }
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -74,6 +96,31 @@ struct ContentView: View {
                     .textFieldStyle(.roundedBorder)
             }
             
+            Divider()
+            
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Text("Keyboard Shortcuts:")
+                        .font(.subheadline)
+                    Spacer()
+                    Button("Reset") {
+                        shortcutManager.resetToDefaults()
+                    }
+                    .buttonStyle(.link)
+                    .font(.caption)
+                }
+                
+                ForEach(ShortcutAction.allCases) { action in
+                    ShortcutRowView(action: action, shortcutManager: shortcutManager)
+                }
+                
+                if shortcutManager.recordingAction != nil {
+                    Text("Press modifier(s) + key, Delete to clear, or Esc to cancel")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                }
+            }
+            
             if !controller.statusMessage.isEmpty {
                 Text(controller.statusMessage)
                     .font(.caption)
@@ -93,5 +140,45 @@ struct ContentView: View {
         }
         .padding()
         .frame(width: 320)
+        .onDisappear {
+            shortcutManager.stopRecording()
+        }
+    }
+}
+
+struct ShortcutRowView: View {
+    let action: ShortcutAction
+    @ObservedObject var shortcutManager: ShortcutManager
+    
+    private var isRecording: Bool {
+        shortcutManager.recordingAction == action
+    }
+    
+    var body: some View {
+        HStack {
+            Text(action.label)
+                .font(.caption)
+            Spacer()
+            Button(action: {
+                if isRecording {
+                    shortcutManager.stopRecording()
+                } else {
+                    shortcutManager.startRecording(for: action)
+                }
+            }) {
+                Text(buttonLabel)
+                    .font(.system(.caption, design: .monospaced))
+                    .frame(minWidth: 90)
+            }
+            .buttonStyle(.bordered)
+            .tint(isRecording ? .accentColor : nil)
+        }
+    }
+    
+    private var buttonLabel: String {
+        if isRecording {
+            return "Press keys…"
+        }
+        return shortcutManager.shortcut(for: action)?.displayString ?? "None"
     }
 }
